@@ -1,0 +1,19 @@
+# Personal memory. The repository ships templates only.
+PROFILE.md
+SYSTEM.md
+VAULT.md
+PROJECTS.md
+DECISIONS.md
+index.json
+journal/*.md
+!journal/README.md
+
+# OS noise
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Editor noise
+.vscode/
+.idea/
+*.swp

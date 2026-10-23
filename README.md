@@ -73,7 +73,7 @@ node tools/remember.mjs "User prefers pnpm over npm" --tag preference
 
 That appends one dated line to the current month's journal and refreshes `index.json`. Anything that will still matter in 30 days should be promoted into `PROJECTS.md`, `DECISIONS.md` or `PROFILE.md`. History is never deleted.
 
-If you use the [OpenCode Telegram gateway](https://github.com/Aniketsomkuwar/opencode-telegram-gateway), point `rememberScript` at `tools/remember.mjs` and the same action becomes `/remember <text>` from Telegram.
+If you use the [OpenCode Telegram gateway](https://github.com/Aniketsomkuwar/opencode-telegram-gateway), point `rememberScript` at `tools/remember.mjs` and the same action becomes `/remember <text>` from Telegram. The gateway also prefixes Telegram prompts with `[surface: telegram]` by default, which is what `CHANNELS.md` keys on, so the agent knows to answer in chat style instead of terminal style. Set `surfaceHint: false` in the gateway config to turn the marker off.
 
 ## Memory that grows
 

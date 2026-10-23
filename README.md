@@ -6,6 +6,8 @@ Your agent forgets everything between sessions. `AGENTS.md` fixes that for one r
 
 No database, no daemon, no dependencies. Node 18+ for the two helper scripts.
 
+![OpenCode Brain](assets/hero.png)
+
 ## How it loads
 
 `AGENTS.md` is registered in your OpenCode config under `instructions`, so it is injected into every session automatically:

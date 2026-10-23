@@ -31,7 +31,8 @@ node tools/init.mjs
 
 Then:
 
-1. Edit `PROFILE.md`, `SYSTEM.md` and `PROJECTS.md`. Delete anything that does not apply.
+1. Edit `PROFILE.md`, `CHANNELS.md`, `SYSTEM.md` and `PROJECTS.md`. Delete anything that does not apply.
+2. Seed `SKILLS.md` with the workflows you repeat, or leave the example and add them later.
 2. Add `AGENTS.md` to your `opencode.json` under `instructions`, as shown above.
 3. Start a new OpenCode session and ask it to read your name and communication rules back to you.
 
@@ -49,14 +50,18 @@ Do not want to fill the templates by hand? Paste [`prompt.md`](prompt.md) into C
 |---|---|---|
 | `AGENTS.md` | yes | Rules, memory protocol and read order. The only file loaded automatically |
 | `PROFILE.md` | no | Who you are, how to communicate, hard rules |
+| `CHANNELS.md` | no | Per-surface communication rules: Telegram, CLI, voice |
 | `SYSTEM.md` | no | Machine, paths, toolchain, services |
 | `VAULT.md` | no | Optional map of a separate personal data vault |
 | `PROJECTS.md` | no | Project registry, read selectively |
 | `DECISIONS.md` | no | Durable decisions, append-only |
+| `SKILLS.md` | no | Index of class-level skills, one line per class |
+| `skills/` | README + example | Class-level procedures: `SKILL.md` plus `references/` |
 | `journal/YYYY-MM.md` | no | Dated history, one line per entry |
 | `index.json` | no | Machine-readable manifest |
 | `tools/init.mjs` | yes | Creates your personal files from the examples |
 | `tools/remember.mjs` | yes | Appends one dated line and refreshes `index.json` |
+| `tools/learn.mjs` | yes | Lists skills, scaffolds a class, reviews the journal |
 
 `*.example.md` files are the templates. `tools/init.mjs` copies them to the real names only if the real file does not exist, so it is safe to run twice.
 
@@ -70,6 +75,23 @@ That appends one dated line to the current month's journal and refreshes `index.
 
 If you use the [OpenCode Telegram gateway](https://github.com/Aniketsomkuwar/opencode-telegram-gateway), point `rememberScript` at `tools/remember.mjs` and the same action becomes `/remember <text>` from Telegram.
 
+## Memory that grows
+
+Three layers, each loaded at a different cost:
+
+1. `AGENTS.md` is always loaded. Keep it short.
+2. `PROFILE.md`, `CHANNELS.md` and `SKILLS.md` load when the task needs identity, surface rules or a procedure.
+3. `skills/<class>/SKILL.md` and its `references/` load only when a row matches.
+
+The loop is capture, review, distill, retire. `remember.mjs` captures. `learn.mjs review` shows what is tagged for promotion. A procedure repeated three times becomes a class-level skill:
+
+```bash
+node tools/learn.mjs new publishing
+node tools/learn.mjs list
+```
+
+Class-level means one `SKILL.md` per family of work, with `references/` for depth, not one skill per command. The same split keeps the index cheap and the detail available.
+
 ## Rules that make it work
 
 - **Append, never rewrite.** Corrections are new entries that supersede old ones. You keep the audit trail.
@@ -80,7 +102,7 @@ If you use the [OpenCode Telegram gateway](https://github.com/Aniketsomkuwar/ope
 
 ## Privacy
 
-The repository ships templates only. `init` creates `PROFILE.md`, `SYSTEM.md`, `VAULT.md`, `PROJECTS.md`, `DECISIONS.md`, `index.json` and `journal/*.md` as local, gitignored files. `git status` stays clean after you fill them in.
+The repository ships templates only. `init` creates `PROFILE.md`, `CHANNELS.md`, `SYSTEM.md`, `VAULT.md`, `PROJECTS.md`, `DECISIONS.md`, `SKILLS.md`, `index.json` and `journal/*.md` as local, gitignored files. `git status` stays clean after you fill them in.
 
 If you want to version your own memory privately, fork the repo, remove those entries from `.gitignore`, and push to a private repository. Do not do that to a public one.
 

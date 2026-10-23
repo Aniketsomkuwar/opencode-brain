@@ -10,19 +10,24 @@ const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 
 const pairs = [
   ['PROFILE.example.md', 'PROFILE.md'],
+  ['CHANNELS.example.md', 'CHANNELS.md'],
   ['SYSTEM.example.md', 'SYSTEM.md'],
   ['VAULT.example.md', 'VAULT.md'],
   ['PROJECTS.example.md', 'PROJECTS.md'],
   ['DECISIONS.example.md', 'DECISIONS.md'],
+  ['SKILLS.example.md', 'SKILLS.md'],
 ];
 
 const files = [
   { path: 'AGENTS.md', role: 'always loaded' },
   { path: 'PROFILE.md', role: 'identity and rules' },
+  { path: 'CHANNELS.md', role: 'per-surface communication rules' },
   { path: 'SYSTEM.md', role: 'machine and tooling' },
   { path: 'VAULT.md', role: 'optional external vault map' },
   { path: 'PROJECTS.md', role: 'project registry' },
   { path: 'DECISIONS.md', role: 'durable decisions' },
+  { path: 'SKILLS.md', role: 'class-level skill index' },
+  { path: 'skills/', role: 'class-level procedures' },
   { path: 'journal/', role: 'dated history' },
 ];
 
@@ -59,6 +64,6 @@ if (!existsSync(indexPath)) {
 console.log('');
 console.log(`Done. ${created} file(s) created in ${root}.`);
 console.log('Next:');
-console.log('  1. Edit PROFILE.md, SYSTEM.md and PROJECTS.md.');
+console.log('  1. Edit PROFILE.md, CHANNELS.md, SYSTEM.md and PROJECTS.md.');
 console.log('  2. Add AGENTS.md to the instructions array in your opencode.json.');
 console.log('  3. Start a new session and confirm the brain loaded.');

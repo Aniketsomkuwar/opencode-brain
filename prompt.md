@@ -52,13 +52,17 @@ Ask these questions in one batch, not one at a time. Keep it short.
 5. Their machine and operating system, and any important paths or drives.
 6. Hard rules: when the agent may commit or push, where secrets live, anything it must never touch.
 7. Whether they keep a separate personal data vault that the brain should point at. This is optional.
+8. How replies should differ by surface: Telegram versus the CLI or TUI. Ask for length, formatting, and anything that annoys them on a phone.
+9. Which workflows they repeat often enough to deserve a skill. Two or three is enough to start.
 
 Then fill the files:
 
 - `PROFILE.md` - identity, role, communication constraints, working preferences, hard rules.
+- `CHANNELS.md` - how the user writes and how to reply on Telegram, CLI/TUI and voice. Record the differences, not a copy of the global rules.
 - `SYSTEM.md` - machine, OS, paths, toolchain, running services.
 - `PROJECTS.md` - one row per active project, with path, status and notes.
 - `DECISIONS.md` - start with any decision the user states during the interview.
+- `SKILLS.md` - one row per class of work. Seed it with the repeated workflows from question 9, or leave the example row and say so.
 - `VAULT.md` - only if the user has a separate vault. Otherwise delete the file and remove the `VAULT.md` line from the read order in `AGENTS.md`.
 
 Delete every placeholder that does not apply. Empty sections are worse than absent ones.
@@ -89,7 +93,7 @@ Open a new session and ask:
 
 > Which files are you instructed to read first, and in what order?
 
-The answer must come from `AGENTS.md`: `PROFILE.md`, then `SYSTEM.md`, then `VAULT.md` if present, then `PROJECTS.md`, `DECISIONS.md`, and the journal. Then ask it to state the user's preferred name and communication rules. If it cannot, the config path is wrong or the session was not restarted.
+The answer must come from `AGENTS.md`: `PROFILE.md`, then `CHANNELS.md`, then `SYSTEM.md`, then `VAULT.md` if present, then `PROJECTS.md`, `DECISIONS.md`, `SKILLS.md`, and the journal. Then ask it to state the user's preferred name and how it would reply differently on Telegram versus the CLI. If it cannot, the config path is wrong or the session was not restarted.
 
 ## Step 7 - Report
 
@@ -99,11 +103,12 @@ Tell the user:
 - Which files were created and which are gitignored.
 - The exact config file that was edited.
 - The verification result.
-- That `PROFILE.md`, `SYSTEM.md`, `PROJECTS.md`, `DECISIONS.md` and `journal/` are personal and must never be committed to a public repository.
+- That `PROFILE.md`, `CHANNELS.md`, `SYSTEM.md`, `PROJECTS.md`, `DECISIONS.md`, `SKILLS.md`, `skills/` and `journal/` are personal and must never be committed to a public repository.
+- How to capture memory (`node tools/remember.mjs`) and how to review and scaffold skills (`node tools/learn.mjs review`, `node tools/learn.mjs new <class>`).
 
 ## Hard rules
 
 - Never copy the user's personal files into this repository or any other project repository.
 - Never write API keys, tokens, passwords or private keys into the brain. Reference paths only.
-- Never delete an existing `PROFILE.md`, `SYSTEM.md`, `PROJECTS.md` or journal entry. Merge and append.
+- Never delete an existing `PROFILE.md`, `CHANNELS.md`, `SYSTEM.md`, `PROJECTS.md`, `SKILLS.md` or journal entry. Merge and append.
 - Do not claim success before Step 6 returns the expected answer.

@@ -1,12 +1,22 @@
 # Personal memory. The repository ships templates only.
 PROFILE.md
+CHANNELS.md
 SYSTEM.md
 VAULT.md
 PROJECTS.md
 DECISIONS.md
+SKILLS.md
 index.json
 journal/*.md
 !journal/README.md
+
+# Personal skills. The repo ships the convention and one example.
+skills/*
+!skills/README.md
+!skills/example/
+!skills/example/SKILL.md
+!skills/example/references/
+!skills/example/references/example.md
 
 # OS noise
 .DS_Store
